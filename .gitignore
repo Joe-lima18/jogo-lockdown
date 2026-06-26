@@ -1,2 +1,45 @@
-venv
-_pycache_
+# Ambiente virtual
+venv/
+.venv/
+env/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos compilados
+*.so
+*.pyd
+*.dll
+
+# Arquivos de distribuição
+build/
+dist/
+*.egg-info/
+
+# Arquivos do VS Code
+.vscode/
+
+# Arquivos do PyCharm
+.idea/
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Configurações do sistema
+.DS_Store
+Thumbs.db
+
+# Cache do pytest
+.pytest_cache/
+
+# Cache do mypy
+.mypy_cache/
+
+# Cache do Ruff
+.ruff_cache/
