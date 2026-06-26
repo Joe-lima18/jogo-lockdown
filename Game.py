@@ -16,7 +16,4 @@ class Game:
             pass
             menu.run()
             
-            #for event in pg.event.get():
-            #   if event.type == pg.QUIT: #fechar janela
-            #        quit() #encerra o programa
             
