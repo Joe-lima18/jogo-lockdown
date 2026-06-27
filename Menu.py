@@ -9,7 +9,7 @@ class Menu:
     def __init__(self, window):
         self.window = window
         #imagem de fundo do menu
-        self.surf = pg.image.load("assets/imagens/menu.png")
+        self.surf = pg.image.load("assets/imagens/menu.png").convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
