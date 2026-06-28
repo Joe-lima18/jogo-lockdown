@@ -134,12 +134,12 @@ class Level:
             )
             if self.player.has_key:
                 self.level_text(
-                    "CHAVE: ABRA A PORTA",
+                    "CHAVE: ABRA A PORTA AQUI",
                     (500, 10)
                 )
             else:
                 self.level_text(
-                    "CHAVE: FALTA CHAVES",
+                    "CHAVE: PEGUE UMA CHAVE",
                     (500, 10)
                 )
             self.level_text(
