@@ -1,6 +1,4 @@
 import pygame as pg
-from pygame import mask
-
 
 class Player:
 
@@ -10,7 +8,7 @@ class Player:
             "assets/imagens/player.png"
         ).convert_alpha()
 
-        # Retângulo de colisão
+        # colisão
         self.rect = self.image.get_rect(center=(x, y))
 
         # Velocidade

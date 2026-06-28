@@ -1,7 +1,7 @@
 import sys
 import pygame as pg
 
-import Door
+from Door import Door
 from const import BRANCO, WIN_HEIGHT
 from Player import Player
 from Enemy import Enemy
@@ -45,11 +45,7 @@ class Level:
         # Chaves
         self.keys = []
 
-        positions = [
-            (400, 300),
-            (600, 400),
-            (200, 500)
-        ]
+        positions = [(400, 300), (600, 400), (200, 500)]
 
         for pos in positions:
             key = Key(pos[0], pos[1])
@@ -58,7 +54,7 @@ class Level:
 
         # Inimigos
         self.enemies = []
-        positions = [(250, 180), (500, 150), (600, 480), (325, 320), (700,200)]
+        positions = [(250, 180), (500, 150), (600, 480), (325, 320)]
 
         for pos in positions:
             enemy = Enemy(pos[0], pos[1])
@@ -66,7 +62,7 @@ class Level:
             self.enemies.append(enemy)
             
         # Porta
-        self.door = Door(730, 520)
+        self.door = Door(730, 100)
         self.entities.append(self.door)
             
             
@@ -98,6 +94,14 @@ class Level:
             for enemy in self.enemies:
                 enemy.update(self.mask)
                 
+            for enemy in self.enemies:
+                enemy.update(self.mask)
+
+                # Colisão com o jogador
+                if enemy.rect.colliderect(self.player.rect):
+                    pg.mixer.music.stop()
+                    return "GAME_OVER"
+                
             #chaves
             for key in self.keys:
                 key.update()
@@ -114,7 +118,7 @@ class Level:
 
                 pg.mixer.music.stop()
 
-                return
+                return "WIN"
             
             # Fundo
             self.window.blit(self.surf, self.rect)
