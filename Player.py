@@ -1,4 +1,5 @@
 import pygame as pg
+from pygame import mask
 
 
 class Player:
@@ -14,6 +15,7 @@ class Player:
 
         # Velocidade
         self.speed = 5
+        self.has_key = False
 
         # Direção
         self.dx = 0
@@ -39,15 +41,53 @@ class Player:
         if keys[pg.K_s]:
             self.dy = self.speed
 
-    def move(self):
-        """Move o jogador."""
+    def move(self, mask):
 
-        self.rect.x += self.dx
-        self.rect.y += self.dy
+    # Movimento no eixo X
+        next_rect = self.rect.move(self.dx, 0)
 
-    def update(self):
+        if not self.collide(mask, next_rect):
+             self.rect = next_rect
+
+    # Movimento no eixo Y
+        next_rect = self.rect.move(0, self.dy)
+
+        if not self.collide(mask, next_rect):
+            self.rect = next_rect
+
+    def update(self, mask):
         self.input()
-        self.move()
+        self.move(mask)
 
     def draw(self, window):
         window.blit(self.image, self.rect)
+        
+    def collide(self, mapa, rect):
+
+        pontos = [
+            rect.topleft,
+            rect.topright,
+            rect.bottomleft,
+            rect.bottomright
+        ]   
+
+        for x, y in pontos:
+
+        # Fora do mapa
+            if (
+                x < 0 or
+                y < 0 or
+                x >= mapa.get_width() or
+                y >= mapa.get_height()
+            ):
+                return True
+
+            cor = mapa.get_at((x, y))
+
+        # Preto = parede
+            if cor[:3] == (0, 0, 0):
+                return True
+
+        return False
+        
+    

@@ -20,8 +20,11 @@ class Game:
             # JOGAR
             if menu_return == MENU_OPTIONS[0]:  
                 level = Level(self.window, name="Nível 1")
-                level.run()
-                
+                result = level.run()
+
+                if result == "WIN":
+                    print("Parabéns!")
+                    
             #SAIR
             elif menu_return == MENU_OPTIONS[3]: 
                 pg.quit()
